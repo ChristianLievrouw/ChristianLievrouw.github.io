@@ -6,27 +6,61 @@
 
 (function($) {
 
-	var	$window = $(window),
-		$body = $('body');
+  var	$window = $(window),
+    $body = $('body');
 
-	// Breakpoints.
-		breakpoints({
-			xlarge:   [ '1141px',  '1680px' ],
-			large:    [ '981px',   '1140px' ],
-			medium:   [ '737px',   '980px'  ],
-			small:    [ '481px',   '736px'  ],
-			xsmall:   [ '321px',   '480px'  ],
-			xxsmall:  [ null,      '320px'  ]
-		});
+  const getAjax = { method: 'get', dataType: 'json'};
+  $.ajax('./data/projects.json', getAjax)
+    .then(data => {
+      const arrayOfProjects = data.projects;
+      arrayOfProjects.forEach((project) => {
+        Projects.all.push(new Projects(project));
+      });
+    })
+    .then(() => {
+      renderProjects();
+    });
 
-	// Play initial animations on page load.
-		$window.on('load', function() {
-			window.setTimeout(function() {
-				$body.removeClass('is-preload');
-			}, 100);
-		});
+  // Breakpoints.
+  breakpoints({
+    xlarge:   [ '1141px',  '1680px' ],
+    large:    [ '981px',   '1140px' ],
+    medium:   [ '737px',   '980px'  ],
+    small:    [ '481px',   '736px'  ],
+    xsmall:   [ '321px',   '480px'  ],
+    xxsmall:  [ null,      '320px'  ]
+  });
 
-	// Scrolly.
-		$('.scrolly').scrolly();
+  // Play initial animations on page load.
+  $window.on('load', function() {
+    window.setTimeout(function() {
+      $body.removeClass('is-preload');
+    }, 100);
+  });
+
+  // Scrolly.
+  $('.scrolly').scrolly();
 
 })(jQuery);
+
+
+function Projects(project){
+  for(let key in project){
+    this[key] = project[key];
+  }
+}
+
+Projects.all = [];
+
+Projects.prototype.render = function () {
+  const templateHTML = $('#projects-template').html();
+  const renderHTML = Mustache.render(templateHTML, this);
+  return renderHTML;
+}
+
+function renderProjects() {
+  Projects.all.forEach(project => {
+    $('.placeholder').append(project.render())
+  });
+}
+

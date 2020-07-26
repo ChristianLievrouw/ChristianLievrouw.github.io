@@ -1,9 +1,0 @@
-{
-  "projects": [
-    {
-    "project_url": "https://github.com/ChristianLievrouw/salmonProject",
-    "title": "salmon cookies",
-    "description": "Salmon cookies project uses HTML, CSS, and javascript to render sales data for a company and display them in a table."
-    }
-  ]
-}
