@@ -1,16 +1,19 @@
 {
   "projects": [
     {
+      "image_url": "images/pic02.jpg",
       "project_url": "https://github.com/ChristianLievrouw/salmonProject",
       "title": "Salmon Cookies",
       "description": "Salmon cookies project uses HTML, CSS, and javascript to render sales data for a company and display them in a table."
     },
     {
+      "image_url": "images/pic03.jpg",
       "project_url": "https://github.com/ArikMackenburg/geoproject",
       "title": "Geoproject",
       "description": "GeoProject took user data compared it to other health care digital marketing efforts that compare to users input"
     },
     {
+      "image_url": "images/pic04.jpg",
       "project_url": "https://github.com/ChristianLievrouw/bussMall",
       "title": "BusMall",
       "description": "Displayed three images to vote on 25 times randomly to generate a graph of most popular items to least."
